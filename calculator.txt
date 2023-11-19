@@ -1,0 +1,117 @@
+
+Dim Operand1 As Double, Operand2 As Double هنا تكتب الاكواد في اعلى الصفحة وبالضبط
+Dim [Operator] As Stringا
+public class تحت كلمة الــ
+هنا تكتب الكود في زر رقم واحد ولاحظ كتابة اسامي الازرار في كود واحد
+
+
+Private Sub bttn1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bttn0.Click, bttn1.Click, bttn2.Click, _
+bttn3.Click, bttn4.Click, bttn5.Click, bttn6.Click, bttn7.Click, bttn8.Click, bttn9.Click
+
+
+If clearDisplay Then
+lblDisplay.Text = ""
+clearDisplay = False
+End If
+lblDisplay.Text = Val(lblDisplay.Text + sender.text)
+End Sub
+__________________________________________________ ________________________
+كود زر الفاصلة في الارقام
+
+Private Sub bttnPeriod_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bttnPeriod.Click
+
+If lblDisplay.Text.IndexOf(".") > 0 Then
+Exit Sub
+Else
+lblDisplay.Text = lblDisplay.Text & "."
+End If
+End Sub
+__________________________________________________ _______________________
+كود زر الامر الجمع (+)
+
+Private Sub bttnPlus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bttnPlus.Click
+
+Operand1 = Val(lblDisplay.Text)
+[Operator] = "+"
+clearDisplay = True
+End Sub
+__________________________________________________ _______________________
+كود عملية اليساوي (=)
+
+Private Sub bttnEquals_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bttnEquals.Click
+
+Dim result As Double
+Operand2 = Val(lblDisplay.Text)
+Try
+Select Case [Operator]
+Case "+"
+result = Operand1 + Operand2
+Case "-"
+result = Operand1 - Operand2
+Case "*"
+result = Operand1 * Operand2
+Case "/"
+If Operand2 <> "0" Then lblDisplay.Text = result
+End Select
+Catch exc As Exception
+MsgBox(exc.Message)
+result = "ERROR"
+Finally
+lblDisplay.Text = result
+clearDisplay = True
+End Try
+End Sub
+
+__________________________________________________ _______________________
+
+
+
+
+
+كود عملية الطرح (-)
+
+Private Sub bttnMinus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bttnMinus.Click
+
+Operand1 = Val(lblDisplay.Text)
+[Operator] = "-"
+clearDisplay = True ' lblDisplay.Text = ""
+
+End Sub
+__________________________________________________ _______________________
+كود عملية الضرب (*)
+
+Private Sub bttnMultiply_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bttnMultiply.Click
+
+Operand1 = Val(lblDisplay.Text)
+[Operator] = "*"
+clearDisplay = True
+
+End Sub
+__________________________________________________ _______________________
+كود عملية القسمه (/)
+Private Sub bttnDivide_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bttnDivide.Click
+
+Operand1 = Val(lblDisplay.Text)
+[Operator] = "/"
+clearDisplay = True
+
+End Sub
+__________________________________________________ _______________________
+وغير الخاصية من form_ اكتب هذا الكود في الـ
+Form_load الى form_keypress
+
+Private Sub Form_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles MyBase.KeyPress
+If System.Char.IsDigit(e.KeyChar) Or e.KeyChar = "." Then
+If clearDisplay Then
+lblDisplay.Text = ""
+clearDisplay = False
+End If
+lblDisplay.Text = lblDisplay.Text + e.KeyChar
+End If
+End Sub
+__________________________________________________ _______________________
+كود زر المسح في مربع النص lblDisplay.Text
+
+Private Sub bttnClear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bttnClear.Click
+
+lblDisplay.Text = ""
